@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./card.css"
+import "./Card.css"
 
 
 function Card(props) {

@@ -48,48 +48,37 @@ function App() {
   {src: "img/ivan3.jpg", selected: false, id: 3},
   {src: "img/ivan4.jpg", selected: false, id: 4}]);
 
-
-  const compareScores = () => {
-    if(currentScore > highScore){
-      setHighScore(currentScore);
-    }
-  }
-
-  const incrementCurrentScore = () => {
-    setCurrentScore(currentScore + 1);
-  }
-
-  const resetCurrentScore = () => {
-    setCurrentScore(0);
-  }
-
-  const resetSelectedItems = () => {
-    setSources([{src: "img/ivan1.jpg", selected: false, id: 1},
-    {src: "img/ivan2.jpg", selected: false, id: 2},
-    {src: "img/ivan3.jpg", selected: false, id: 3},
-    {src: "img/ivan4.jpg", selected: false, id: 4}])
-  }
-
   const isCardSelected = (id) => {
     //find the card that is clicked
     let targetCard = sources.filter((x) => {return x.id === id});
     //if card has already been selected, game is over, reset the score and make all cards unselected
     if(targetCard[0].selected === true){
-      resetCurrentScore();
-      resetSelectedItems();
+      setCurrentScore(0);
+      let updatedArray = sources;
+      // eslint-disable-next-line array-callback-return
+      updatedArray.map((source) => {
+        source.selected = false;
+      })
+      console.log(updatedArray);
+      setSources(updatedArray);
+      console.log("test");
     }
     //if card hasn't already been selected, increase score and possibly increase high score
     else{
-      incrementCurrentScore();
-      compareScores();
-    }
-    //finally, make card selected
-    let updatedArray = sources.map((source) => {
-      if (source.id === id) {
-        source.selected = true;
+      setCurrentScore(currentScore + 1);
+      if(currentScore > highScore){
+        setHighScore(currentScore);
       }
-    })
-    setSources(updatedArray);
+      let updatedArray = sources;
+      // eslint-disable-next-line array-callback-return
+      updatedArray.map((source) => {
+        if (source.id === id) {
+          source.selected = true;
+        }
+      })
+      console.log(updatedArray);
+      setSources(updatedArray);
+    }   
   }
 
   const shuffleCards = () => {
