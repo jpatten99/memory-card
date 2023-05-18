@@ -37,8 +37,19 @@
   }
 }
 
+#main-container{
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+  background-color: #61dafb;
+}
+
+#scoreboard-container{
+  display: flex;
+  justify-content: center;
+}
+
 #card-container{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
 }

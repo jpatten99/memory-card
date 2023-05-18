@@ -44,9 +44,7 @@ function App() {
     setSources(shuffledArray);
   }
   const isCardSelected = (id) => {
-    //find the card that is clicked
     let targetCard = sources.filter((x) => {return x.id === id});
-    //if card has already been selected, game is over, reset the score and make all cards unselected
     if(targetCard[0].selected === true){
       setCurrentScore(0);
       let updatedArray = sources;
@@ -58,12 +56,8 @@ function App() {
       setSources(updatedArray);
       console.log("test");
     }
-    //if card hasn't already been selected, increase score and possibly increase high score
     else{
       setCurrentScore(currentScore + 1);
-      // if(currentScore > highScore){
-      //   setHighScore(currentScore);
-      // }
       let updatedArray = sources;
       // eslint-disable-next-line array-callback-return
       updatedArray.map((source) => {
@@ -74,47 +68,9 @@ function App() {
       console.log(updatedArray);
       setSources(updatedArray);
     }   
-  }
-
- 
-  // const [color, setColor] = useState("black");
-  // useEffect(() => {
-  //   const changeColorOnClick = () => {
-  //     if (color === "black") {
-  //       setColor("red");
-  //     } else {
-  //       setColor("black");
-  //     }
-  //   };
-    
-  //   document.addEventListener("click", changeColorOnClick);
-
-  //   return () => {
-  //     document.removeEventListener("click", changeColorOnClick);
-  //   };
-  // }, [color]);
-
-  // return (
-  //   <div>
-  //     <div
-  //       id="myDiv"
-  //       style={{
-  //         color: "white",
-  //         width: "100px",
-  //         height: "100px",
-  //         position: "absolute",
-  //         left: "50%",
-  //         top: "50%",
-  //         backgroundColor: color,
-  //       }}
-  //     >
-  //       This div can change color. Click on me!
-  //     </div>
-  //   </div>
-  // );
-  
+  } 
   return (
-    <div>
+    <div id= "main-container">
       <div id='scoreboard-container'>
         <Scoreboard currentScore = {currentScore} highScore = {highScore} />
       </div>
